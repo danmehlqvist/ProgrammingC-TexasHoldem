@@ -48,7 +48,7 @@
             this.btnNewTable = new System.Windows.Forms.Button();
             this.btnNewHand = new System.Windows.Forms.Button();
             this.btnDrawCard = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblWinner = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblHand1
@@ -107,7 +107,7 @@
             this.txtPlayerName1.Location = new System.Drawing.Point(83, 12);
             this.txtPlayerName1.Name = "txtPlayerName1";
             this.txtPlayerName1.Size = new System.Drawing.Size(100, 26);
-            this.txtPlayerName1.TabIndex = 5;
+            this.txtPlayerName1.TabIndex = 0;
             // 
             // txtPlayerName4
             // 
@@ -115,7 +115,7 @@
             this.txtPlayerName4.Location = new System.Drawing.Point(83, 108);
             this.txtPlayerName4.Name = "txtPlayerName4";
             this.txtPlayerName4.Size = new System.Drawing.Size(100, 26);
-            this.txtPlayerName4.TabIndex = 6;
+            this.txtPlayerName4.TabIndex = 3;
             // 
             // txtPlayerName3
             // 
@@ -123,7 +123,7 @@
             this.txtPlayerName3.Location = new System.Drawing.Point(83, 76);
             this.txtPlayerName3.Name = "txtPlayerName3";
             this.txtPlayerName3.Size = new System.Drawing.Size(100, 26);
-            this.txtPlayerName3.TabIndex = 7;
+            this.txtPlayerName3.TabIndex = 2;
             // 
             // txtPlayerName2
             // 
@@ -131,7 +131,7 @@
             this.txtPlayerName2.Location = new System.Drawing.Point(83, 44);
             this.txtPlayerName2.Name = "txtPlayerName2";
             this.txtPlayerName2.Size = new System.Drawing.Size(100, 26);
-            this.txtPlayerName2.TabIndex = 8;
+            this.txtPlayerName2.TabIndex = 1;
             // 
             // lblHand4
             // 
@@ -184,7 +184,7 @@
             // lblPlayerName3
             // 
             this.lblPlayerName3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerName3.Location = new System.Drawing.Point(280, 501);
+            this.lblPlayerName3.Location = new System.Drawing.Point(304, 581);
             this.lblPlayerName3.Name = "lblPlayerName3";
             this.lblPlayerName3.Size = new System.Drawing.Size(65, 20);
             this.lblPlayerName3.TabIndex = 14;
@@ -193,7 +193,7 @@
             // lblPlayerName2
             // 
             this.lblPlayerName2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerName2.Location = new System.Drawing.Point(725, 501);
+            this.lblPlayerName2.Location = new System.Drawing.Point(728, 581);
             this.lblPlayerName2.Name = "lblPlayerName2";
             this.lblPlayerName2.Size = new System.Drawing.Size(65, 20);
             this.lblPlayerName2.TabIndex = 15;
@@ -205,9 +205,10 @@
             this.btnNewTable.Location = new System.Drawing.Point(16, 140);
             this.btnNewTable.Name = "btnNewTable";
             this.btnNewTable.Size = new System.Drawing.Size(167, 28);
-            this.btnNewTable.TabIndex = 16;
+            this.btnNewTable.TabIndex = 4;
             this.btnNewTable.Text = "New Table";
             this.btnNewTable.UseVisualStyleBackColor = true;
+            this.btnNewTable.Click += new System.EventHandler(this.btnNewTable_Click);
             // 
             // btnNewHand
             // 
@@ -231,16 +232,16 @@
             this.btnDrawCard.Text = "Draw Card";
             this.btnDrawCard.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblWinner
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(410, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 31);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Winner";
-            this.label1.Visible = false;
+            this.lblWinner.AutoSize = true;
+            this.lblWinner.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWinner.Location = new System.Drawing.Point(410, 44);
+            this.lblWinner.Name = "lblWinner";
+            this.lblWinner.Size = new System.Drawing.Size(99, 31);
+            this.lblWinner.TabIndex = 19;
+            this.lblWinner.Text = "Winner";
+            this.lblWinner.Visible = false;
             // 
             // Form1
             // 
@@ -249,7 +250,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1070, 635);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblWinner);
             this.Controls.Add(this.btnDrawCard);
             this.Controls.Add(this.btnNewHand);
             this.Controls.Add(this.btnNewTable);
@@ -275,6 +276,7 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,7 +303,7 @@
         private System.Windows.Forms.Button btnNewTable;
         private System.Windows.Forms.Button btnNewHand;
         private System.Windows.Forms.Button btnDrawCard;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblWinner;
     }
 }
 

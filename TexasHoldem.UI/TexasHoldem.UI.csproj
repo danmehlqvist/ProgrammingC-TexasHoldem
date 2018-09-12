@@ -82,5 +82,11 @@
   <ItemGroup>
     <Folder Include="Images\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TexasHoldem.Library\TexasHoldem.Library.csproj">
+      <Project>{ee61537f-df85-47d1-b8d3-c052d60088e1}</Project>
+      <Name>TexasHoldem.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
