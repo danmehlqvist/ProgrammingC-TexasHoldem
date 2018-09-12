@@ -220,6 +220,7 @@
             this.btnNewHand.TabIndex = 17;
             this.btnNewHand.Text = "New Hand";
             this.btnNewHand.UseVisualStyleBackColor = true;
+            this.btnNewHand.Click += new System.EventHandler(this.btnNewHand_Click);
             // 
             // btnDrawCard
             // 
@@ -231,6 +232,7 @@
             this.btnDrawCard.TabIndex = 18;
             this.btnDrawCard.Text = "Draw Card";
             this.btnDrawCard.UseVisualStyleBackColor = true;
+            this.btnDrawCard.Click += new System.EventHandler(this.btnDrawCard_Click);
             // 
             // lblWinner
             // 

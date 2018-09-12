@@ -8,11 +8,15 @@ using TexasHoldem.Library.Structs;
 
 namespace TexasHoldem.UI
 {
+    // TODO! If player1 name is empty, the display of cards is not ok.
+
     public partial class Form1 : Form
     {
 
         private List<Label> _playerCardLabels;
         private List<Label> _dealerCardLabels;
+
+        private Table _table;
 
         private Point[] _playerLblPos;
         private Point[] _dealerLblPos;
@@ -45,16 +49,18 @@ namespace TexasHoldem.UI
                 new Point(630,287)
                 };
                 #endregion
-                
+
+                //var player = new Player("Dan");
+                //player.ReceiveCard(new Card(Suits.Hearts, Values.Six),true);
 
             }
             catch (ArgumentException ex)
             {
-
+                MessageBox.Show(String.Format($"ArgumentException: {ex.Message}"));
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format($"Something happened: {ex.Message}"));
+                MessageBox.Show(String.Format($"Exception: {ex.Message}"));
             }
         }
 
@@ -63,10 +69,16 @@ namespace TexasHoldem.UI
             try
             {
                 #region Set Player names
+                // Clear the _names
+                names.Clear();
                 if (!txtPlayerName1.Text.Equals(""))
                 {
                     names.Add(txtPlayerName1.Text);
                     lblPlayerName1.Text = txtPlayerName1.Text;
+                }
+                else
+                {
+                    lblPlayerName1.Text = "";
                 }
 
 
@@ -75,12 +87,20 @@ namespace TexasHoldem.UI
                     names.Add(txtPlayerName2.Text);
                     lblPlayerName2.Text = txtPlayerName2.Text;
                 }
+                else
+                {
+                    lblPlayerName2.Text = "";
+                }
 
 
                 if (!txtPlayerName3.Text.Equals(""))
                 {
                     names.Add(txtPlayerName3.Text);
                     lblPlayerName3.Text = txtPlayerName3.Text;
+                }
+                else
+                {
+                    lblPlayerName3.Text = "";
                 }
 
 
@@ -89,19 +109,25 @@ namespace TexasHoldem.UI
                     names.Add(txtPlayerName4.Text);
                     lblPlayerName4.Text = txtPlayerName4.Text;
                 }
+                else
+                {
+                    lblPlayerName4.Text = "";
+                }
                 #endregion
 
-                ClearLabelHands();
-                ClearDealerCardsFromTable();
-                ClearPlayerCardsFromTable();
                 btnDrawCard.Enabled = false;
                 btnNewHand.Enabled = true;
                 lblWinner.Visible = false;
 
+                ClearHandLabels();
+                ClearDealerCardsFromTable();
+                ClearPlayerCardsFromTable();
+
+                _table = new Table(names.ToArray());
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error in application");
             }
             catch
             {
@@ -109,7 +135,7 @@ namespace TexasHoldem.UI
             }
         }
 
-        private void ClearLabelHands()
+        private void ClearHandLabels()
         {
             lblHand1.Text = "";
             lblHand2.Text = "";
@@ -157,6 +183,69 @@ namespace TexasHoldem.UI
                 this.Controls.Remove(label);
             }
             _dealerCardLabels.Clear();
+        }
+
+        private void btnNewHand_Click(object sender, EventArgs e)
+        {
+            if (_table == null)
+            {
+                return;
+            }
+
+            ClearHandLabels();
+            ClearPlayerCardsFromTable();
+            _table.DealNewHand();
+            DisplayPlayerHands();
+            ClearDealerCardsFromTable();
+            btnDrawCard.Enabled = true;
+            lblWinner.Visible = false;
+        }
+
+        private void DisplayPlayerHands()
+        {
+            for (int ii = 0; ii < _table.Players.Count*2; ii++)
+            {
+                var card = CreateCardLabel(
+                    _playerLblPos[ii].X,
+                    _playerLblPos[ii].Y,
+                    _table.Players[ii / 2].PlayerCards[ii % 2]
+                    );
+                _playerCardLabels.Add(card);
+            }
+            this.Controls.AddRange(_playerCardLabels.ToArray());
+        }
+
+        private void btnDrawCard_Click(object sender, EventArgs e)
+        {
+            if (_table.Dealer.CardCount == 0)
+            {
+                _table.DealerDrawsCard(3);
+            } else if (_table.Dealer.CardCount >= 3)
+            {
+                _table.DealerDrawsCard();
+            }
+            DisplayDealerCards();
+            if (_table.Dealer.Cards.Count == 5)
+            {
+                btnDrawCard.Enabled = false;
+            }
+        }
+
+        private void DisplayDealerCards()
+        {
+            ClearDealerCardsFromTable();
+
+            //foreach (var card in _table.Dealer.Cards)
+            for (int ii = 0; ii < _table.Dealer.Cards.Count;ii++)
+            {
+                var card = CreateCardLabel(
+                    _dealerLblPos[ii].X,
+                    _dealerLblPos[ii].Y,
+                    _table.Dealer.Cards[ii]);
+
+                _dealerCardLabels.Add(card);
+            }
+            this.Controls.AddRange(_dealerCardLabels.ToArray());
         }
     }
 }
