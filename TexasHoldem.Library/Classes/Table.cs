@@ -65,6 +65,14 @@ namespace TexasHoldem.Library.Classes
                 }
             }
         }
+
+        public void EvaluatePlayerHands()
+        {
+            foreach(var player in Players)
+            {
+                player.EvaluateHand();
+            }
+        }
     }
 
 }

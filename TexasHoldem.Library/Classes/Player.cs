@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TexasHoldem.Library.Enums;
 using TexasHoldem.Library.Structs;
 
 namespace TexasHoldem.Library.Classes
@@ -17,10 +18,14 @@ namespace TexasHoldem.Library.Classes
 
         public int CardCount { get { return Cards.Count; } }
 
+        public Hands HandValue { get { return _hand.HandValue; } }
+
+        public Suits Suit { get { return _hand.Suit; } }
+
         public Player(string name)
         {
             Name = name;
-            _hand = new Hand();
+            _hand = new Hand(new HandEvaluator());
         }
 
         public void ReceiveCard(Card card,bool isPlayerCard=false)
@@ -31,6 +36,11 @@ namespace TexasHoldem.Library.Classes
         public void ClearHand()
         {
             _hand.Clear();
+        }
+
+        public void EvaluateHand()
+        {
+            _hand.EvaluateHand();
         }
     }
 }

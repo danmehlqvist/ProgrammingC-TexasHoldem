@@ -169,7 +169,7 @@ namespace TexasHoldem.UI
         /// </summary>
         private void ClearPlayerCardsFromTable()
         {
-            foreach(var label in _playerCardLabels)
+            foreach (var label in _playerCardLabels)
             {
                 this.Controls.Remove(label);
             }
@@ -197,13 +197,15 @@ namespace TexasHoldem.UI
             _table.DealNewHand();
             DisplayPlayerHands();
             ClearDealerCardsFromTable();
+            _table.EvaluatePlayerHands();
+            FillHandValueLabels();
             btnDrawCard.Enabled = true;
             lblWinner.Visible = false;
         }
 
         private void DisplayPlayerHands()
         {
-            for (int ii = 0; ii < _table.Players.Count*2; ii++)
+            for (int ii = 0; ii < _table.Players.Count * 2; ii++)
             {
                 var card = CreateCardLabel(
                     _playerLblPos[ii].X,
@@ -220,11 +222,14 @@ namespace TexasHoldem.UI
             if (_table.Dealer.CardCount == 0)
             {
                 _table.DealerDrawsCard(3);
-            } else if (_table.Dealer.CardCount >= 3)
+            }
+            else if (_table.Dealer.CardCount >= 3)
             {
                 _table.DealerDrawsCard();
             }
             DisplayDealerCards();
+            _table.EvaluatePlayerHands();
+            FillHandValueLabels();
             if (_table.Dealer.Cards.Count == 5)
             {
                 btnDrawCard.Enabled = false;
@@ -236,7 +241,7 @@ namespace TexasHoldem.UI
             ClearDealerCardsFromTable();
 
             //foreach (var card in _table.Dealer.Cards)
-            for (int ii = 0; ii < _table.Dealer.Cards.Count;ii++)
+            for (int ii = 0; ii < _table.Dealer.Cards.Count; ii++)
             {
                 var card = CreateCardLabel(
                     _dealerLblPos[ii].X,
@@ -246,6 +251,20 @@ namespace TexasHoldem.UI
                 _dealerCardLabels.Add(card);
             }
             this.Controls.AddRange(_dealerCardLabels.ToArray());
+        }
+
+        private void FillHandValueLabels()
+        {
+            lblHand1.Text = _table.Players[0].HandValue.ToString();
+            lblHand2.Text = _table.Players[1].HandValue.ToString();
+            if (_table.Players.Count >= 3)
+            {
+                lblHand3.Text = _table.Players[2].HandValue.ToString();
+            }
+            if (_table.Players.Count == 4)
+            {
+                lblHand4.Text = _table.Players[3].HandValue.ToString();
+            }
         }
     }
 }
