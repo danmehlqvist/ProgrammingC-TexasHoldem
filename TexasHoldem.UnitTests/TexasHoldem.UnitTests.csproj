@@ -56,9 +56,11 @@
     <Compile Include="HandEvaluatorTests.cs" />
     <Compile Include="IsFlushTests.cs" />
     <Compile Include="IsFullHouseTest.cs" />
+    <Compile Include="IsPairTest.cs" />
     <Compile Include="IsStraightTests.cs" />
     <Compile Include="IsThreeOfAKindTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TwoPairsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

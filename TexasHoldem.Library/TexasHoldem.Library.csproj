@@ -50,6 +50,7 @@
     <Compile Include="Classes\IsFlush.cs" />
     <Compile Include="Classes\IsFourOfAKind.cs" />
     <Compile Include="Classes\IsFullHouse.cs" />
+    <Compile Include="Classes\IsPair.cs" />
     <Compile Include="Classes\IsRoyalStraightFlush.cs" />
     <Compile Include="Classes\IsStraight.cs" />
     <Compile Include="Classes\IsStraightFlush.cs" />

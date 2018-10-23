@@ -5,7 +5,7 @@ using TexasHoldem.Library.Structs;
 
 namespace TexasHoldem.Library.Classes
 {
-    class IsPair
+    public class IsPair
     {
 
         public List<Card> BestCards { get; private set; }
@@ -15,7 +15,7 @@ namespace TexasHoldem.Library.Classes
         public bool EvaluateCards(List<Card> cards)
         {
 
-            for (int ii = cards.Count - 1; ii > 0; ii--)
+            for (int ii = cards.Count - 1; ii >= 0; ii--)
             {
                 if (cards.Count(c => c.Value == cards[ii].Value) == 2) // first pair found
                 {
@@ -23,7 +23,7 @@ namespace TexasHoldem.Library.Classes
                     BestCards = cards.Where(c => c.Value == cards[ii].Value).ToList();
                     if (cards.Count > 2)
                     {
-                        BestCards.AddRange(BestCards.GetRange(leftoverCards.Count - 3, 3));
+                        //BestCards.AddRange(BestCards.GetRange(leftoverCards.Count - 3, 3));
                     }
                     HandValue = Hands.Pair;
                     return true;
@@ -34,5 +34,3 @@ namespace TexasHoldem.Library.Classes
     }
 }
 
-}
-}
