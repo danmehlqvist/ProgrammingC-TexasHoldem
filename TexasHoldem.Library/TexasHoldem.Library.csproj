@@ -47,6 +47,14 @@
     <Compile Include="Classes\Deck.cs" />
     <Compile Include="Classes\Hand.cs" />
     <Compile Include="Classes\HandEvaluator.cs" />
+    <Compile Include="Classes\IsFlush.cs" />
+    <Compile Include="Classes\IsFourOfAKind.cs" />
+    <Compile Include="Classes\IsFullHouse.cs" />
+    <Compile Include="Classes\IsRoyalStraightFlush.cs" />
+    <Compile Include="Classes\IsStraight.cs" />
+    <Compile Include="Classes\IsStraightFlush.cs" />
+    <Compile Include="Classes\IsThreeOfKind.cs" />
+    <Compile Include="Classes\IsTwoPairs.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\Table.cs" />
     <Compile Include="Enums\Hands.cs" />
