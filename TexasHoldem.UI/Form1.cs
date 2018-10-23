@@ -49,10 +49,7 @@ namespace TexasHoldem.UI
                 new Point(630,287)
                 };
                 #endregion
-
-                //var player = new Player("Dan");
-                //player.ReceiveCard(new Card(Suits.Hearts, Values.Six),true);
-
+				
             }
             catch (ArgumentException ex)
             {
@@ -117,9 +114,10 @@ namespace TexasHoldem.UI
 
                 btnDrawCard.Enabled = false;
                 btnNewHand.Enabled = true;
-                lblWinner.Visible = false;
+				//lblWinner.Visible = true;
+				lblWinner.Visible = false;
 
-                ClearHandLabels();
+				ClearHandLabels();
                 ClearDealerCardsFromTable();
                 ClearPlayerCardsFromTable();
 
@@ -233,6 +231,7 @@ namespace TexasHoldem.UI
             if (_table.Dealer.Cards.Count == 5)
             {
                 btnDrawCard.Enabled = false;
+				DisplayWinners();
             }
         }
 
@@ -266,5 +265,18 @@ namespace TexasHoldem.UI
                 lblHand4.Text = _table.Players[3].HandValue.ToString();
             }
         }
+
+		private void DisplayWinners()
+		{
+			List<Player> winners = _table.DetermineWinner();
+			String winnerLabel = "";
+			winners.ForEach(w =>
+			{
+				winnerLabel += w.Name + " ";
+			});
+			winnerLabel += " Wins!";
+			lblWinner.Visible = true;
+			lblWinner.Text = winnerLabel;
+		}
     }
 }

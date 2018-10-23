@@ -22,6 +22,8 @@ namespace TexasHoldem.Library.Classes
 
         public Suits Suit { get { return _hand.Suit; } }
 
+		//public int Score { get; set; }
+
         public Player(string name)
         {
             Name = name;

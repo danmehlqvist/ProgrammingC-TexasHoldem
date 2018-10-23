@@ -49,7 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -60,16 +60,16 @@
     <Compile Include="IsStraightTests.cs" />
     <Compile Include="IsThreeOfAKindTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TwoPairsTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="IsTwoPairsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TexasHoldem.Library\TexasHoldem.Library.csproj">
       <Project>{ee61537f-df85-47d1-b8d3-c052d60088e1}</Project>
       <Name>TexasHoldem.Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

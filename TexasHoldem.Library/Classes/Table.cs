@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using TexasHoldem.Library.Enums;
 
 namespace TexasHoldem.Library.Classes
 {
@@ -73,6 +75,21 @@ namespace TexasHoldem.Library.Classes
                 player.EvaluateHand();
             }
         }
-    }
+
+		public List<Player> DetermineWinner()
+		{
+			List<Player> ranking = Players.OrderBy(x => (int)x.HandValue).Reverse().ToList();
+
+			List<Player> winners = ranking.Where(x => (int)x.HandValue == (int)ranking[0].HandValue).ToList();
+
+			return winners;
+		}
+
+		private int scoreHand(Player player)
+		{
+			return (int)player.HandValue;
+		}
+
+	}
 
 }
